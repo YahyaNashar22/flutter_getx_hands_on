@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:getx_hands_on/app/modules/product/controllers/product_controller.dart';
 
 class ProductView extends StatelessWidget {
-  final ProductController productController = Get.put(ProductController());
+  final ProductController productController = Get.find<ProductController>();
   ProductView({super.key});
 
   @override
