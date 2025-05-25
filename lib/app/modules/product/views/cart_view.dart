@@ -33,6 +33,15 @@ class CartView extends StatelessWidget {
               }
             }),
           ),
+          Obx(() {
+            return Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Text(
+                'Total: \$${cartController.totalAmount.value.toStringAsFixed(2)}',
+                style: TextStyle(fontSize: 24),
+              ),
+            );
+          }),
         ],
       ),
     );
