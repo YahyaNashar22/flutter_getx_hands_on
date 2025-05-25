@@ -1,17 +1,17 @@
 class ProductModel {
-  final String name;
+  final String title;
   final double price;
 
   // constructor with required values to create a product
-  ProductModel({required this.name, required this.price});
+  ProductModel({required this.title, required this.price});
 
   // factory constructor
   factory ProductModel.fromJson(Map<String, dynamic> json) {
-    return ProductModel(name: json['name'], price: json['price']);
+    return ProductModel(title: json['title'], price: json['price']);
   }
 
   // method
   Map<String, dynamic> toJson() {
-    return {'name': name, 'price': price};
+    return {'title': title, 'price': price};
   }
 }
