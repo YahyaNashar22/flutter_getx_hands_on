@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:getx_hands_on/app/modules/product/controllers/cart_controller.dart';
 import 'package:getx_hands_on/app/modules/product/models/product_model.dart';
 
 class ProductDetailsView extends StatelessWidget {
-  const ProductDetailsView({super.key});
+  final CartController cartController = Get.find<CartController>();
+  ProductDetailsView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -11,14 +13,33 @@ class ProductDetailsView extends StatelessWidget {
     final ProductModel product = Get.arguments;
 
     return Scaffold(
-      appBar: AppBar(title: Text('Product Details')),
+      appBar: AppBar(
+        title: Text('Product Details'),
+        actions: [
+          IconButton(
+            onPressed: () => Get.toNamed('/cart'),
+            icon: const Icon(Icons.shopping_cart),
+          ),
+        ],
+      ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(product.name, style: const TextStyle(fontSize: 24)),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             Text('\$${product.price}', style: const TextStyle(fontSize: 24)),
+            const SizedBox(height: 20),
+            ElevatedButton(
+              onPressed: () {
+                cartController.addToCart(product);
+                Get.snackbar(
+                  'Added to Cart',
+                  '${product.name} added to your cart',
+                );
+              },
+              child: Text('Add to Cart'),
+            ),
           ],
         ),
       ),
