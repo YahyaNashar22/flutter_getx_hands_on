@@ -13,6 +13,14 @@ class ProductView extends StatelessWidget {
       // indicates the usage of Getx controller
       // listens for changes and updates the ui
       body: Obx(() {
+        if (productController.isLoading.value) {
+          return Center(child: CircularProgressIndicator());
+        }
+
+        if (productController.errorMessage.value.isNotEmpty) {
+          return Center(child: Text(productController.errorMessage.value));
+        }
+
         return ListView.builder(
           itemCount: productController.products.length,
           itemBuilder: (context, index) {
