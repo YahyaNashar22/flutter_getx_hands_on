@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:getx_hands_on/app/modules/product/controllers/cart_controller.dart';
 
 class CheckoutView extends StatelessWidget {
   const CheckoutView({super.key});
@@ -16,8 +17,24 @@ class CheckoutView extends StatelessWidget {
             Text('Thank you for your purchase', style: TextStyle(fontSize: 24)),
             const SizedBox(height: 20),
             ElevatedButton(
-              onPressed: () => Get.offAllNamed('/product'),
-              child: Text('Go to Home'),
+              onPressed: () {
+                final CartController cartController =
+                    Get.find<CartController>();
+
+                cartController.cartService.clearCart();
+
+                Get.snackbar(
+                  'Order Completed',
+                  'Your order has been successfully placed!',
+                  snackPosition: SnackPosition.BOTTOM,
+                  duration: const Duration(seconds: 2),
+                  backgroundColor: Colors.blue,
+                  colorText: Colors.white,
+                );
+
+                Get.offAllNamed('/product');
+              },
+              child: Text('Place Order'),
             ),
           ],
         ),
