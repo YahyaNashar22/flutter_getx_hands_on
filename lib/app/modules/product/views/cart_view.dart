@@ -22,7 +22,7 @@ class CartView extends StatelessWidget {
                     final item = cartController.cartItems[index];
 
                     return ListTile(
-                      title: Text(item.name),
+                      title: Text(item.title),
                       subtitle: Text('\$${item.price.toString()}'),
                       trailing: IconButton(
                         icon: Icon(Icons.remove_circle_outline),
@@ -30,7 +30,7 @@ class CartView extends StatelessWidget {
                           Get.defaultDialog(
                             title: 'Remove Items',
                             middleText:
-                                'Are you sure you want to remove ${item.name} from the cart?',
+                                'Are you sure you want to remove ${item.title} from the cart?',
                             textConfirm: 'Yes',
                             confirmTextColor: Colors.white,
                             onConfirm: () {

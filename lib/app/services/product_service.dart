@@ -12,7 +12,9 @@ class ProductService {
     if (response.statusCode == 200) {
       List data = json.decode(response.body);
 
-      return data.map((e) => ProductModel.fromJson(e)).toList();
+      return data.map((e) {
+        return ProductModel.fromJson(e);
+      }).toList();
     } else {
       throw Exception('Failed to fetch products');
     }

@@ -7,7 +7,10 @@ class ProductModel {
 
   // factory constructor
   factory ProductModel.fromJson(Map<String, dynamic> json) {
-    return ProductModel(title: json['title'], price: json['price']);
+    return ProductModel(
+      title: json['title'] ?? "Unknown",
+      price: (json['price'] ?? 0).toDouble(),
+    );
   }
 
   // method

@@ -14,16 +14,16 @@ class ProductController extends GetxController {
   // begin with these products inside the products array of the controller
   @override
   void onInit() {
-    fetchProducts();
     super.onInit();
+    fetchProducts();
   }
 
   void fetchProducts() async {
     try {
       isLoading(true);
       errorMessage('');
-      var products = await productService.fetchProducts();
-      products.assignAll(products);
+      var fetchedProducts = await productService.fetchProducts();
+      products.assignAll(fetchedProducts);
     } catch (error) {
       errorMessage('Failed to fetch products');
     } finally {
